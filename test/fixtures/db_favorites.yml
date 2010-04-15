@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  db_user_id: 1
+  db_project_id: 1
+
+two:
+  db_user_id: 1
+  db_project_id: 1
