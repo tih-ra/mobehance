@@ -5,6 +5,6 @@ class Category
         @name, @url = name, url
   end
   def self.preCollect pst
-    pst.map{|c| self.new(c.text, c[:href])}
+    pst.map{|c| self.new(c.text, c[:href][/\d+/])}
   end
 end

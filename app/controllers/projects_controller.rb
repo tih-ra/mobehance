@@ -34,6 +34,15 @@ class ProjectsController < ApplicationController
     end
   end
   
+  def realms
+    @projects = Project.all(getScraped(BehanceURL['search_by_realm']+params[:id]))
+    respond_to do |format|
+      format.xml do
+        render :action=>"index"
+      end
+    end
+  end
+  
   private
   def get_host
     @my_host = request.env['HTTP_HOST']

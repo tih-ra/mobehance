@@ -11,6 +11,7 @@ module Behance
                 "post_comment"=>BehanceDomain+"index.php/project/postComment",
                 "gallery"=>BehanceDomain+"Gallery/",
                 "search"=>BehanceDomain+"Search?category=projects&realm=0&main-search=",
+                "realms"=>BehanceDomain+"Search?category=projects&realm=",
                 "users"=>BehanceDomain}
   
   protected

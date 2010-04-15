@@ -55,6 +55,7 @@ Mobehance::Application.routes.draw do |map|
   
   match "/projects(/:global_category(/:id)).:format" => "projects#index", :as=>:projects
   match "/projects/search/:search_for(.:format)" => "projects#search", :as=>:projects
+  match "/projects/realms/:id(.:format)" => "projects#realms", :as=>:projects
   
   match "/project/:name/:id(.:format)" => "projects#show", :as=>:project
   match "/project/:name/:id/comments(.:format)" => "comments#index", :as=>:coments
