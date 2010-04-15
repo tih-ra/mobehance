@@ -8,13 +8,13 @@ class Item
       end
   end
   
-  def self.preCollect pst, proj_url
+  def self.preCollect pst, proj_url, my_host
     objects = []
     db_project = DbProject.find_or_create_by_url(proj_url)
     images = db_project.getImages(pst)
     images.each do |item|
      
-      objects << self.new(:src=>"http://192.168.121.1:3000"+item.img.url(:android),
+      objects << self.new(:src=>'http://'+my_host+item.img.url(:android),
                           :type=>'image',
                           :description=>''
                           ) 

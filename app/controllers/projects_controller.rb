@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  
+  before_filter :get_host
   def index
     params[:id]||=''
     params[:global_category]||='featured'
@@ -16,7 +16,8 @@ class ProjectsController < ApplicationController
   
   
   def show
-    @project = Project.one(getScraped(BehanceURL['gallery']+params[:name]+"/"+params[:id]), params[:name]+"/"+params[:id])
+    
+    @project = Project.one(getScraped(BehanceURL['gallery']+params[:name]+"/"+params[:id]), params[:name]+"/"+params[:id], @my_host)
     respond_to do |format|
       format.xml do
         
@@ -33,4 +34,8 @@ class ProjectsController < ApplicationController
     end
   end
   
+  private
+  def get_host
+    @my_host = request.env['HTTP_HOST']
+  end
 end
