@@ -42,7 +42,7 @@ class Project
                           :date=>doc.at_css("#proj-info-stats div[2] span").text,
                           :user=>User.new(:name=>doc.at_css("#project-owners a").text, :url=>doc.at_css("#project-owners a")[:href]),
                           :categories=>Category.preCollect(doc.css("#tag_links a")),
-                          :items=>Item.preCollect(doc.css("#proj-body div img"), proj_url, my_host)
+                          :items=>Item.preCollect(doc.css("#proj-body img"), proj_url, my_host)
                           )
   end
   
