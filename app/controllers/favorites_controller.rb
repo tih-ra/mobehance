@@ -1,5 +1,5 @@
 class FavoritesController < ApplicationController
-  before_filter :login_required
+  #before_filter :login_required
   
   def index
      @favorites = DbFavorite.order("created_at desc").where("behance_user = ?", params[:behance_user])
