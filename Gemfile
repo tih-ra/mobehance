@@ -9,7 +9,7 @@ gem "rails", "3.0.0.beta3"
 
 # ActiveRecord requires a database adapter. By default,
 # Rails has selected sqlite3.
-gem "sqlite3-ruby", "1.3.0", :require => "sqlite3"
+gem "sqlite3-ruby", :require => "sqlite3"
 gem "nokogiri", ">=1.4.1"
 gem "rmagick", ">=2.12.2"
 #gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git", :branch => "rails3"
