@@ -1,7 +1,3 @@
-require 'nokogiri'
-require 'open-uri'
-require 'net/http'
-require 'json'
 module Behance
   BehanceDomain = "http://www.behance.net/"
   BehanceURL = {"featured"=>BehanceDomain+"?category=projects&time=all", 
