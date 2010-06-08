@@ -1,13 +1,13 @@
 module Behance
   BehanceDomain = "http://www.behance.net/"
-  BehanceURL = {"featured"=>BehanceDomain+"?category=projects&time=all", 
-                "recent"=>BehanceDomain+"?category=projects&browse=recent&time=all",
-                "week_viewed"=>BehanceDomain+"?category=projects&browse=viewed&time=week",
+  BehanceURL = {"featured"=>BehanceDomain+"?content=projects&sort=featured_date&time=all&page=1&url=&sort_order=desc", 
+                "recent"=>BehanceDomain+"?content=projects&sort=published_date&time=all&page=1&sort_order=desc",
+                "week_viewed"=>BehanceDomain+"?content=projects&sort=views&time=week&page=1&url=",
                 "signin"=>BehanceDomain+"index.php/auth/loginSubmit",
                 "post_comment"=>BehanceDomain+"index.php/project/postComment",
-                "gallery"=>BehanceDomain+"Gallery/",
-                "search"=>BehanceDomain+"Search?category=projects&realm=0&main-search=",
-                "realms"=>BehanceDomain+"Search?category=projects&realm=",
+                "gallery"=>BehanceDomain+"gallery/",
+                "search"=>BehanceDomain+"?search=",
+                "realms"=>BehanceDomain+"?field=",
                 "users"=>BehanceDomain}
   
   protected

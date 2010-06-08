@@ -16,10 +16,10 @@ class Project
   
   def self.all doc, type="featured"
     objects = []
-    doc.css("#{type=='users' ? '#profile-projects' : '#gallery-row-list'} .coverWrapper").each do |item|
+    doc.css("#projects-content .cover-body").each do |item|
       
-      proj_url = item.at_css(".coverImg a")[:href].gsub('/Gallery/', '')
-      cover_src = item.at_css(".coverImg img")[:src]
+      proj_url = item.at_css(".cover-img a")[:href].gsub('/gallery/', '')
+      cover_src = item.at_css(".cover-img img")[:src]
       title = item.at_css(".projectName").text
       
       db_project = DbProject.find_or_create_by_url(proj_url)
@@ -29,8 +29,8 @@ class Project
                           :cover=>cover_src, 
                           :date=>( item.at_css(".coverDate").nil? ? '' : item.at_css(".coverDate").text ),
                           :url=>proj_url, 
-                          :user=>User.new(:name=>item.at_css(".coverBy a").text, :url=>item.at_css(".coverBy a")[:href].gsub(Behance::BehanceDomain,'')),
-                          :categories=>Category.preCollect(item.css(".coverRealmBg a"))
+                          :user=>User.new(:name=>item.at_css(".single-owner a").text, :url=>item.at_css(".single-owner a")[:href].gsub(Behance::BehanceDomain,'')),
+                          :categories=>Category.preCollect(item.css(".cover-field-wrap a"))
                           )
     end
     return objects
@@ -38,20 +38,20 @@ class Project
   
   def self.one doc, proj_url, my_host
     
-    self.new(:title=>doc.at_css("#proj-info h1").text,
+    self.new(:title=>doc.at_css("#proj-header h1").text,
                           :date=>doc.at_css("#proj-info-stats div[2] span").text,
-                          :user=>User.new(:name=>doc.at_css("#project-owners a").text, :url=>doc.at_css("#project-owners a")[:href]),
+                          :user=>User.new(:name=>doc.at_css("#owners a").text, :url=>doc.at_css("#project-owners a")[:href]),
                           :categories=>Category.preCollect(doc.css("#tag_links a")),
-                          :items=>Item.preCollect(doc.css("#proj-body img"), proj_url, my_host)
+                          :items=>Item.preCollect(doc.css("#project-modules img"), proj_url, my_host)
                           )
   end
   
   def self.comments doc, proj_id
-    self.new(:title=>doc.at_css("#proj-info h1").text,
+    self.new(:title=>doc.at_css("#proj-header h1").text,
                           :proj_id=>proj_id,
                           :date=>doc.at_css("#proj-info-stats div[2] span").text,
-                          :user=>User.new(:name=>doc.at_css("#project-owners a").text, :url=>doc.at_css("#project-owners a")[:href]),
-                          :comments=>Comment.preCollect(doc.css("#commentsAjax .commentMod"))
+                          :user=>User.new(:name=>doc.at_css("#owners a").text, :url=>doc.at_css("#project-owners a")[:href]),
+                          :comments=>Comment.preCollect(doc.css("#comments-list .comment"))
                           )
     
   end

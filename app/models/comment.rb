@@ -11,10 +11,11 @@ class Comment
   def self.preCollect pst
     objects = []
     pst.each do |comment|
-    
-      objects << self.new(:date=>comment.at_css(".commentBy").text.gsub(/(.*), /, ""),
-                          :message=>comment.at_css(".commentBlurb").text,
-                          :user=>User.new(:name=>comment.at_css(".commentBy a").text, :url=>comment.at_css(".commentBy a")[:href], :icon=>comment.at_css(".commentImg img")[:src])
+      message = comment.search(".user-content").text
+      excluded_div = comment.search(".user-content-date-header").text
+      objects << self.new(:date=>comment.at_css(".wall-post-date").text.to_time.strftime("%Y/%m/%d %H:%M"),
+                          :message=>message.gsub("#{excluded_div}", "").gsub(/\s/, ''),
+                          :user=>User.new(:name=>comment.at_css(".user-content-date-header a").text, :url=>comment.at_css(".user-content-date-header a")[:href], :icon=>comment.at_css(".user-image img")[:src])
                           ) 
     
     end unless pst.empty?
