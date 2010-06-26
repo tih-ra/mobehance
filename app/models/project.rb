@@ -29,7 +29,7 @@ class Project
                           :cover=>cover_src, 
                           :date=>( item.at_css(".coverDate").nil? ? '' : item.at_css(".coverDate").text ),
                           :url=>proj_url, 
-                          :user=>User.new(:name=>item.at_css(".single-owner a").text, :url=>item.at_css(".single-owner a")[:href].gsub(Behance::BehanceDomain,'')),
+                          :user=>User.new(:name=>item.at_css(".cover-by-wrap a").text, :url=>item.at_css(".cover-by-wrap a")[:href].gsub(Behance::BehanceDomain,'')),
                           :categories=>Category.preCollect(item.css(".cover-field-wrap a"))
                           )
     end
